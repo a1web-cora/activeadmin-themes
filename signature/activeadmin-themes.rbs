@@ -6,6 +6,18 @@ module ActiveAdmin
 
     def self.registry: () -> Registry
 
+    class Recipe
+      class Conflict < StandardError
+      end
+      attr_reader destination: String
+      attr_reader entrypoint: String
+      attr_reader theme: Theme
+      def initialize: (root: String, entrypoint: String, active_admin_version: String, ?key: String | Symbol) -> void
+      def status: () -> (:missing | :identical | :modified)
+      def install: () -> (:created | :identical)
+      def instructions: () -> String
+    end
+
     class InstallationPlan
       class UnsafePath < ArgumentError
       end
