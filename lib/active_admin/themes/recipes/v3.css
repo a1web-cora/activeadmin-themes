@@ -1,0 +1,12 @@
+/* lib/active_admin/themes/recipes/v3.css
+ * ActiveAdmin Themes: v3 recipe 1. Application-owned after explicit installation.
+ * Initial proof stylesheet; visual surface refinements follow independently.
+ */
+body.active_admin {
+  --aat-focus: #1d4ed8;
+}
+
+body.active_admin :focus-visible {
+  outline: 2px solid var(--aat-focus);
+  outline-offset: 3px;
+}
