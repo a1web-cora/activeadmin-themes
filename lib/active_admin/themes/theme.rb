@@ -9,7 +9,7 @@ module ActiveAdmin
           key: key.to_sym,
           name: String(name).freeze,
           description: String(description).freeze,
-          active_admin_requirement: Gem::Requirement.new(*Array(active_admin_requirement)).freeze,
+          active_admin_requirement: Gem::Requirement.create(active_admin_requirement).freeze,
           recipe_version: String(recipe_version).freeze
         )
       end

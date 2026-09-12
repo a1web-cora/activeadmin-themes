@@ -27,6 +27,14 @@ bin/ci
 
 See the [documentation index](docs/README.md). [Rodeo issue #235](https://github.com/a1web/rodeo/issues/235) tracks eventual application adoption.
 
+## Showcase
+
+The [ActiveAdmin React Showcase](https://github.com/scarver2/activeadmin-react-showcase) is the designated executable reference application for themes across ordinary ActiveAdmin pages and optional React islands. Theme integration and screenshots are pending; the registry foundation does not yet provide an installable visual theme.
+
+`activeadmin-themes` owns presentation recipes; `activeadmin-react` owns optional React integration. Neither gem requires the other. The Showcase will prove them together before Rodeo adoption.
+
+Implementation follows the [Rodeo lessons and acceptance directives](https://github.com/scarver2/activeadmin-themes/issues/13).
+
 ## License
 
 [MIT](LICENSE) © 2026 Stan Carver II.

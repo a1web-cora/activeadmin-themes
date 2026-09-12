@@ -9,7 +9,7 @@ require "active_admin/themes/version"
 module ActiveAdmin
   module Themes
     def self.registry
-      @registry ||= Registry.new.tap { |registry| registry.register(V3.theme) }
+      Registry.new.tap { |registry| registry.register(V3.theme) }
     end
   end
 end

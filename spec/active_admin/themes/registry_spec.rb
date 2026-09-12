@@ -29,4 +29,15 @@ RSpec.describe ActiveAdmin::Themes::Registry do
   it "exposes the default v3 catalog" do
     expect(ActiveAdmin::Themes.registry.fetch(:v3).key).to eq(:v3)
   end
+
+  it "rejects unknown theme keys" do
+    expect { registry.fetch(:unknown) }.to raise_error(KeyError)
+  end
+
+  it "gives callers independent catalogs" do
+    first = ActiveAdmin::Themes.registry
+    second = ActiveAdmin::Themes.registry
+    first.register(theme.with(key: :custom))
+    expect(second.keys).to eq([:v3])
+  end
 end
