@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name = "activeadmin-themes"
   spec.version = ActiveAdmin::Themes::VERSION
   spec.authors = ["Stan Carver II"]
-  spec.email = ["oss@stancarver.com"]
+  spec.email = ["howdy@stancarver.com"]
   spec.summary = "Explicit, installable visual theme recipes for ActiveAdmin"
   spec.description = "Inspectable ActiveAdmin theme recipes that applications deliberately install and own."
   spec.homepage = "https://github.com/scarver2/activeadmin-themes"
