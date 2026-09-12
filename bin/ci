@@ -2,6 +2,7 @@
 # bin/ci
 
 source "$(dirname "$0")/_lib.sh"
+"$BIN_DIR/test-mise"
 run_bundle rspec
 run_bundle rubocop
 run_bundle rbs -I signature validate

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# spec/fixtures/mise
+
+printf 'fixture-mise'
+printf ' <%s>' "$@"
+printf '\n'
