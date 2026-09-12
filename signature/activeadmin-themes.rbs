@@ -6,6 +6,15 @@ module ActiveAdmin
 
     def self.registry: () -> Registry
 
+    class InstallationPlan
+      class UnsafePath < ArgumentError
+      end
+
+      def initialize: (root: String, theme: Theme, active_admin_version: String, files: Hash[String, String]) -> void
+      def status: () -> Hash[String, (:missing | :identical | :modified)]
+      def installable?: () -> bool
+    end
+
     class Theme < Data
       attr_reader key: Symbol
       attr_reader name: String
