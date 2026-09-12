@@ -1,0 +1,16 @@
+# Bundler
+/.bundle/
+/vendor/bundle/
+
+# Generated artifacts
+/coverage/
+/pkg/
+
+# Local environment and credentials
+/.env
+/.env.*
+!/.env.example
+
+# Temporary files
+/.ruby-lsp/
+/tmp/

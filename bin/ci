@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# bin/ci
+
+source "$(dirname "$0")/_lib.sh"
+run_bundle rspec
+run_bundle rubocop
+run_bundle rbs validate
+run_bundle bundle-audit check --update
+run_bundle rake build

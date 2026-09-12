@@ -1,0 +1,29 @@
+# signature/activeadmin-themes.rbs
+
+module ActiveAdmin
+  module Themes
+    VERSION: String
+
+    def self.registry: () -> Registry
+
+    class Theme < Data
+      attr_reader key: Symbol
+      attr_reader name: String
+      attr_reader description: String
+      attr_reader active_admin_requirement: Gem::Requirement
+      attr_reader recipe_version: String
+
+      def supports?: (String | Gem::Version version) -> bool
+    end
+
+    class Registry
+      include Enumerable[Theme]
+
+      def initialize: () -> void
+      def each: () { (Theme) -> void } -> untyped
+      def fetch: (String | Symbol key) -> Theme
+      def register: (Theme theme) -> self
+      def keys: () -> Array[Symbol]
+    end
+  end
+end
