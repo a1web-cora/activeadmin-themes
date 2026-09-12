@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# bin/help
+
+source "$(dirname "$0")/_lib.sh"
+echo "ActiveAdmin Themes commands:"
+for file in "$BIN_DIR"/*; do
+  name="$(basename "$file")"
+  [[ "$name" == _* || ! -x "$file" ]] && continue
+  printf "  %s\n" "$name"
+done
