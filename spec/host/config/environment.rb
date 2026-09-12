@@ -43,6 +43,10 @@ ActiveRecord::Schema.define do
     table.boolean :featured, default: false
     table.timestamps
   end
+  create_table :product_notes do |table|
+    table.references :product, null: false
+    table.string :body, null: false
+  end
 end
 
 45.times do |index|

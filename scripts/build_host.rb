@@ -14,7 +14,7 @@ input.write(<<~CSS)
   @import "../node_modules/tailwindcss/index.css";
   @import "../lib/active_admin/themes/recipes/v3.css";
   @plugin "../node_modules/@activeadmin/activeadmin/plugin.js";
-  @source "#{framework}/app/views";
+  @source "#{framework}/app";
   @source "#{framework}/lib/active_admin";
   @source "../spec/host/app";
   @custom-variant dark (&:where(.dark, .dark *));

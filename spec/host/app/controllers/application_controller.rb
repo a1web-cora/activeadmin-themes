@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_demo_user
-    nil
+    "Synthetic Operator" if session[:demo]
   end
 end

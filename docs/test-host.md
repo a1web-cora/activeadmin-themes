@@ -29,8 +29,17 @@ menu, dark-mode, filter or batch-action behavior. The custom login layout opts
 in with `data-activeadmin-theme="v3"`; it does not assume Devise.
 
 Request tests are not browser, visual parity, production-build, or deployment
-proof. The visual inventory tracks those separately. GitHub CI needs repository
+proof. Issue #11 tracks the remaining visual inventory separately. GitHub CI needs repository
 owner approval before a first-time fork workflow can execute.
+
+`bin/host-assets` rebuilds CSS and runs Propshaft precompilation with the
+production Rails environment against this synthetic host. It produces an
+ignored manifest containing CSS and native JavaScript modules. This proves
+local production-mode precompilation, not a clean-container release build.
+After changing styles, rerun it if the precompiled manifest is present.
+
+The file input is a presentation probe only: uploads are not persisted. Nested
+product notes are persisted only in the disposable process-local database.
 
 —
 Stan Carver II

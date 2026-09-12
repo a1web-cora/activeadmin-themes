@@ -41,6 +41,36 @@ RSpec.describe "Synthetic theme host", type: :feature do
     expect(page.driver.response.headers["content-type"]).to include("text/css")
   end
 
+  it "renders native JavaScript hooks exactly once" do
+    expect(page).to have_css('script[type="importmap"]', count: 1, visible: false)
+    expect(page).to have_css('script[type="module"]', text: 'import "active_admin"', count: 1, visible: false)
+    expect(page).to have_css('button[aria-label="Toggle dark mode"]')
+  end
+
+  it "renders native method-aware logout for the synthetic operator" do
+    expect(page).to have_css('#user-menu a[data-method="delete"][href="/logout"]', visible: false)
+    expect(page).to have_css("#user-menu", text: "Synthetic Operator", visible: false)
+  end
+
+  it "renders nested and file input controls" do
+    visit "/admin/products/new"
+    expect(page).to have_link("Add New Product note")
+    expect(page).to have_field("Sample file", type: "file")
+    expect(page).to have_field("Available on", type: "date")
+  end
+
+  it "preserves scope and pagination queries" do
+    visit "/admin/products?scope=ready&page=2"
+    expect(page).to have_content("Showing 16-23 of 23")
+    expect(page).not_to have_css('.status-tag[data-status="pending"]')
+  end
+
+  it "renders a genuine empty result" do
+    visit "/admin/products?q[name_eq]=no-synthetic-match"
+    expect(page).not_to have_css(".data-table tbody tr")
+    expect(page).to have_content("No Products found")
+  end
+
   it "excludes admin CSS from the public layout" do
     visit "/"
     expect(page).not_to have_css('link[rel="stylesheet"]', visible: false)

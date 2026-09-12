@@ -2,7 +2,8 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Product do
-  permit_params :name, :status, :quantity, :description, :available_on, :featured
+  permit_params :name, :status, :quantity, :description, :available_on, :featured, :sample_file,
+                product_notes_attributes: %i[id body _destroy]
   scope :all, default: true
   scope("Ready") { |products| products.where(status: "ready") }
   scope("Pending") { |products| products.where(status: "pending") }
@@ -32,6 +33,10 @@ ActiveAdmin.register Product do
       form.input :description
       form.input :available_on, as: :date_picker
       form.input :featured
+      form.input :sample_file, as: :file, hint: "Synthetic presentation probe; uploads are not stored."
+      form.has_many :product_notes, allow_destroy: true do |note|
+        note.input :body
+      end
     end
     form.actions
   end

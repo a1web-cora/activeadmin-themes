@@ -2,6 +2,10 @@
 # frozen_string_literal: true
 
 class Product < ActiveRecord::Base
+  has_many :product_notes, dependent: :destroy
+  accepts_nested_attributes_for :product_notes, allow_destroy: true
+  attr_accessor :sample_file
+
   validates :name, presence: true
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
 
