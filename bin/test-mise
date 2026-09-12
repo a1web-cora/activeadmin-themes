@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# bin/test-mise
+
+# Bootstrap regression harness deliberately does not source the helper itself.
+set -euo pipefail
+TEST_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+TEST_HELPER="$TEST_ROOT/bin/_lib.sh"
+TEST_FIXTURE="$TEST_ROOT/spec/fixtures/mise"
+
+actual="$(env -u MISE_BIN PATH="$TEST_ROOT/spec/fixtures:/usr/bin:/bin" \
+  /bin/bash -c 'source "$1"; run_bundle rspec "argument with spaces"' bash "$TEST_HELPER")"
+[[ "$actual" == 'fixture-mise <exec> <--> <bundle> <exec> <rspec> <argument with spaces>' ]]
+
+actual="$(MISE_BIN="$TEST_FIXTURE" PATH=/usr/bin:/bin \
+  /bin/bash -c 'source "$1"; run_bundle rspec' bash "$TEST_HELPER")"
+[[ "$actual" == 'fixture-mise <exec> <--> <bundle> <exec> <rspec>' ]]
+
+# An invalid explicit override must fail, even when PATH contains a valid mise.
+if MISE_BIN="$TEST_ROOT/spec/fixtures/missing-mise" PATH="$TEST_ROOT/spec/fixtures:/usr/bin:/bin" \
+  /bin/bash -c 'source "$1"' bash "$TEST_HELPER" 2>/dev/null; then
+  echo "invalid mise override unexpectedly succeeded" >&2
+  exit 1
+fi
+
+echo "mise bootstrap: PATH discovery, explicit override, argument forwarding and invalid override passed"
