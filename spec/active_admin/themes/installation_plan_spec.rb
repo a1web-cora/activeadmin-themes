@@ -47,7 +47,9 @@ RSpec.describe ActiveAdmin::Themes::InstallationPlan do
     end.to raise_error(ArgumentError, "unsupported ActiveAdmin version")
   end
 
-  ["/tmp/theme.css", "../theme.css", "./theme.css", "a//b", "a/", ""].each do |path|
+  ["/tmp/theme.css", "../theme.css", "./theme.css", "a//b", "a/", "",
+   'nested\\..\\outside.css', 'C:\\theme.css', "C:/theme.css", "C:theme.css",
+   '\\\\server\\share', "a\u0000b"].each do |path|
     context "with unsafe path #{path.inspect}" do
       let(:files) { { path => "recipe" } }
 

@@ -33,6 +33,8 @@ module ActiveAdmin
       attr_reader :files, :root
 
       def resolve(path)
+        raise UnsafePath, "recipe paths must be portable POSIX paths" if path.match?(/[\\:\x00]/)
+
         parts = path.split("/", -1)
         if Pathname.new(path).absolute? || parts.intersect?(["", ".", ".."])
           raise UnsafePath, "recipe paths must be normalized relative paths"
