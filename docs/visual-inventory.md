@@ -18,7 +18,7 @@ screenshot. No mutable online demo is labeled AA3.5 here.
 | Text size / control height | Not established by this source | Proposed 14px / 36px, 44px for coarse pointers |
 | Focus / dark mode | Not established by this source | New semantic palette and visible focus treatment |
 
-The locked current host is AA4.0.0.beta22 / Rails8.1.3.1 / Tailwind4.3.3.
+The separately developed local host is AA4.0.0.beta22 / Rails8.1.3.1 / Tailwind4.3.3.
 Its baseline uses the native AA4 plugin and server-rendered hooks. The target
 is a compact, readable adaptation, not a pixel-identical port. Token values
 remain proposals until visual review; color contrast and keyboard operation
@@ -26,16 +26,16 @@ must be evaluated separately from historical resemblance.
 
 ## Evidence Gates
 
-- Unit/package: full RSpec suite, 100% library line/branch coverage; built gem
-  extraction and explicit install/repeat proof.
-- Request: dashboard/index/filter/validation/CSS/public-page isolation in the
-  synthetic host. This does not establish JavaScript execution.
+- Unit: full RSpec suite, 100% library line/branch coverage; semantic palette
+  tests require 4.5:1 for selected text/feedback pairs and 3:1 for control boundaries.
+- Package/request: built-gem extraction, explicit install/repeat proof and
+  synthetic-host request checks are in a separate host branch, not this PR.
 - Browser/visual: pending durable login/dashboard/index/show/new/edit, empty,
   validation and long-content states at 1440, 1024, 768 and 390px; native menu,
   filters, sorting, scopes, pagination, batch, nested forms and dark persistence.
 - Accessibility: pending keyboard, zoom, reduced motion, forced colors and
   contrast checks; no WCAG conformance claim.
-- Delivery: hosted CI owner approval and workflow credential scope blocked;
+- Delivery: host workflow publishing requires a credential-scope change;
   Showcase demonstration and separately reviewed Rodeo adoption not complete.
 
 —
