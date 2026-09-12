@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# bin/host
+source "$(dirname "$0")/_lib.sh"
+run_bundle rackup spec/host/config.ru --host 127.0.0.1 --port "${PORT:-4317}"

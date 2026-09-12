@@ -14,3 +14,7 @@
 # Temporary files
 /.ruby-lsp/
 /tmp/
+/node_modules/
+/spec/host/app/assets/builds/
+/spec/host/log/
+/spec/host/tmp/

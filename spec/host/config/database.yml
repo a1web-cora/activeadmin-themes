@@ -1,0 +1,10 @@
+# spec/host/config/database.yml
+default: &default
+  adapter: sqlite3
+  database: <%= Rails.root.join("tmp/host-#{Process.pid}.sqlite3") %>
+development:
+  <<: *default
+test:
+  <<: *default
+production:
+  <<: *default
