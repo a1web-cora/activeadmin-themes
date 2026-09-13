@@ -1,0 +1,73 @@
+/* lib/active_admin/themes/recipes/v3/tokens.css
+ * ActiveAdmin Themes: v3 recipe 1. Application-owned after explicit installation.
+ * AA3.5-inspired hierarchy on AA4/Tailwind4; not historical CSS.
+ * Native AA pages are recognized by #main-menu. Custom login layouts opt in
+ * with data-activeadmin-theme="v3". Loading the Ruby gem never imports this file.
+ */
+body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"] {
+  --aat-font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --aat-text-size: 0.875rem;
+  --aat-line-height: 1.5;
+  --aat-space-1: 0.25rem;
+  --aat-space-2: 0.5rem;
+  --aat-space-3: 0.75rem;
+  --aat-space-4: 1rem;
+  --aat-space-6: 1.5rem;
+  --aat-page-gutter: 1.875rem;
+  --aat-radius: 0.25rem;
+  --aat-border-width: 1px;
+  --aat-control-height: 2.25rem;
+  --aat-background: #f3f4f5;
+  --aat-surface: #ffffff;
+  --aat-subtle: #eef0f2;
+  --aat-text: #323537;
+  --aat-muted: #535d65;
+  --aat-link: #38678b;
+  --aat-border: #87929c;
+  --aat-chrome: #42494f;
+  --aat-chrome-text: #ffffff;
+  --aat-selected: #d9e4ec;
+  --aat-focus: #175eac;
+  --aat-danger: #932419;
+  --aat-danger-bg: #fff0ee;
+  --aat-success: #245c34;
+  --aat-success-bg: #edf7ef;
+  --aat-warning: #754600;
+  --aat-warning-bg: #fff5dc;
+  background: var(--aat-background);
+  color: var(--aat-text);
+  font-family: var(--aat-font);
+  font-size: var(--aat-text-size);
+  line-height: var(--aat-line-height);
+}
+
+:is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) :focus-visible {
+  outline: 2px solid var(--aat-focus);
+  outline-offset: 3px;
+}
+
+:is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) a {
+  color: var(--aat-link);
+  text-underline-offset: 0.2em;
+}
+
+/* Follow ActiveAdmin's native persisted theme state. */
+html.dark :is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) {
+  --aat-background: #171c21;
+  --aat-surface: #222a31;
+  --aat-subtle: #2d3740;
+  --aat-text: #edf0f2;
+  --aat-muted: #bdc7d0;
+  --aat-link: #a7d1f3;
+  --aat-border: #71808d;
+  --aat-chrome: #10171d;
+  --aat-selected: #354d60;
+  --aat-focus: #f3cf79;
+  --aat-danger: #ffc1b8;
+  --aat-danger-bg: #4a2525;
+  --aat-success: #b5e5c0;
+  --aat-success-bg: #223e2b;
+  --aat-warning: #f6d892;
+  --aat-warning-bg: #44381f;
+  color-scheme: dark;
+}
