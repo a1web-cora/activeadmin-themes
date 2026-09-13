@@ -234,3 +234,57 @@ body:has(:where(#main-menu)) .formtastic {
   & .cancel-link { color: var(--aat-link); text-decoration: underline; }
   & .boolean label, & .choice label { min-height: var(--aat-control-height); }
 }
+
+/* Filters retain native submission, operator selects and applied-state text. */
+body:has(:where(#main-menu)) {
+  & .filters-form {
+    padding: var(--aat-space-4);
+    background: var(--aat-surface);
+    border: var(--aat-border-width) solid var(--aat-border);
+    border-radius: var(--aat-radius);
+    margin-bottom: var(--aat-space-4);
+    min-width: 0;
+  }
+  & .filters-form-title, & .active-filters-title {
+    color: var(--aat-text);
+    font-size: 1rem;
+    margin-bottom: var(--aat-space-3);
+    overflow-wrap: anywhere;
+  }
+  & .filters-form-field { margin-bottom: var(--aat-space-3); min-width: 0; }
+  & .filters-form .label { font-weight: 600; margin-bottom: var(--aat-space-1); }
+  & .filters-form-input-group {
+    gap: var(--aat-space-2);
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  & .filters-form :is(input:not([type="hidden"]):not([type="checkbox"]):not([type="submit"]), select) {
+    min-height: var(--aat-control-height);
+    min-width: 0;
+    width: 100%;
+    background-color: var(--aat-surface);
+    color: var(--aat-text);
+    border-color: var(--aat-border);
+    border-radius: var(--aat-radius);
+  }
+  & .filters-form-buttons { flex-wrap: wrap; gap: var(--aat-space-3); }
+  & .filters-form .filters-form-submit {
+    min-height: var(--aat-control-height);
+    background: var(--aat-link);
+    color: var(--aat-surface);
+    border-color: var(--aat-link);
+    border-radius: var(--aat-radius);
+  }
+  & .filters-form-clear { color: var(--aat-link); text-decoration: underline; }
+  & .active-filters-list { color: var(--aat-muted); overflow-wrap: anywhere; }
+  & .active-filters-list strong { color: var(--aat-text); }
+  & .active-filters-list [data-filter] {
+    border-inline-start: 3px solid var(--aat-link);
+    padding-inline-start: var(--aat-space-2);
+    margin-bottom: var(--aat-space-2);
+  }
+}
+
+@media (max-width: 48rem) {
+  body:has(:where(#main-menu)) .filters-form-input-group { grid-template-columns: 1fr; }
+}
