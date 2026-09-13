@@ -1,0 +1,14 @@
+<!-- spec/host/app/views/sessions/new.html.erb -->
+<main class="panel w-full max-w-md" data-theme-login>
+  <h1 class="panel-title">Themes Lab Login</h1>
+  <div class="panel-body">
+    <p>Local synthetic demo. Password: demo</p>
+    <%= form_with url: "/login", class: "formtastic" do |form| %>
+      <div class="input">
+        <%= form.label :password, "Demo Password", for: "password" %>
+        <%= form.password_field :password, id: "password", autocomplete: "current-password", required: true %>
+      </div>
+      <%= form.submit "Sign In" %>
+    <% end %>
+  </div>
+</main>

@@ -13,8 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           ruby-version: "4.0"
+      - run: npm ci
+      - run: bin/build-host
       - run: bin/ci

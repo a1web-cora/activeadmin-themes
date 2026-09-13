@@ -1,0 +1,14 @@
+<!-- spec/host/app/views/layouts/demo_login.html.erb -->
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Login | ActiveAdmin Themes Lab</title>
+  <%= render "active_admin/html_head" %>
+</head>
+<body data-activeadmin-theme="v3" class="bg-gray-50 dark:bg-gray-900 text-gray-950 dark:text-gray-100">
+  <div class="flex flex-col items-center justify-center min-h-screen p-4">
+    <% flash.each do |_kind, message| %><p role="alert"><%= message %></p><% end %>
+    <%= yield %>
+  </div>
+</body>
+</html>
