@@ -3,6 +3,7 @@
 
 require "active_admin/themes"
 require "active_admin/themes/installation_plan"
+require "active_admin/themes/recipes/v3"
 
 module ActiveAdmin
   module Themes
@@ -45,7 +46,10 @@ module ActiveAdmin
       private
 
       def source
-        File.binread(File.expand_path("recipes/#{theme.key}.css", __dir__))
+        case theme.key
+        when :v3 then Recipes::V3.source
+        else raise ArgumentError, "no recipe source for #{theme.key.inspect}"
+        end
       end
 
       def plan
