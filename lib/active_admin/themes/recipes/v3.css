@@ -117,3 +117,67 @@ body:has(:where(#main-menu)) {
 @media (max-width: 48rem) {
   body:has(:where(#main-menu)) { --aat-page-gutter: 0.75rem; }
 }
+
+/* Index presentation only; sorting, selection and pagination stay native. */
+body:has(:where(#main-menu)) {
+  & .paginated-collection {
+    background: var(--aat-surface);
+    border-color: var(--aat-border);
+    border-radius: var(--aat-radius);
+    overflow: visible;
+    min-width: 0;
+  }
+  & .paginated-collection-contents { overflow-x: auto; }
+  & .data-table {
+    color: var(--aat-text);
+    & th, & td { padding: var(--aat-space-2) var(--aat-space-3); }
+    & th, & tbody tr { border-color: var(--aat-border); }
+    & th { background: var(--aat-subtle); color: var(--aat-text); text-transform: none; font-size: inherit; }
+    & th a { color: inherit; }
+    & tbody tr:nth-child(even) { background: var(--aat-background); }
+    & tbody tr:hover { background: var(--aat-subtle); }
+    & tbody tr:has(input[type="checkbox"]:checked) { background: var(--aat-selected); }
+    & [data-column="id"], & [data-column="quantity"], & .numeric { text-align: end; font-variant-numeric: tabular-nums; }
+    & td { vertical-align: top; max-width: 32rem; overflow-wrap: anywhere; }
+    & input[type="checkbox"] { accent-color: var(--aat-link); }
+  }
+  & .scopes { gap: var(--aat-space-1); }
+  & .index-button, & .batch-actions-dropdown-toggle {
+    color: var(--aat-text);
+    background: var(--aat-surface);
+    border-color: var(--aat-border);
+    min-height: var(--aat-control-height);
+    border-radius: var(--aat-radius);
+  }
+  & .index-button:hover { background: var(--aat-subtle); }
+  & .index-button-selected, & .index-button-selected:hover {
+    background: var(--aat-selected);
+    box-shadow: inset 0 -3px var(--aat-link);
+    font-weight: 700;
+  }
+  & .scopes-count { background: var(--aat-subtle); color: var(--aat-text); }
+  & .paginated-collection-pagination, & .paginated-collection-footer {
+    padding: var(--aat-space-2) var(--aat-space-3);
+    border-color: var(--aat-border);
+    color: var(--aat-muted);
+    gap: var(--aat-space-2);
+    flex-wrap: wrap;
+  }
+  & .paginated-collection-pagination a {
+    min-height: var(--aat-control-height);
+    color: var(--aat-link);
+    border-radius: var(--aat-radius);
+  }
+  & .paginated-collection-pagination a:hover { background: var(--aat-subtle); }
+  /* AA4 beta22 exposes the current page via this utility, not aria-current. */
+  & .paginated-collection-pagination a.bg-blue-500 {
+    background: var(--aat-selected);
+    color: var(--aat-text);
+    box-shadow: inset 0 -3px var(--aat-link);
+    font-weight: 700;
+  }
+  & .batch-actions-dropdown-menu { background: var(--aat-surface); color: var(--aat-text); }
+  & .batch-actions-dropdown-menu a { color: var(--aat-text); }
+  & .batch-actions-dropdown-toggle:disabled { opacity: 0.6; cursor: not-allowed; }
+  & .blank-slate { padding: var(--aat-space-6); color: var(--aat-muted); }
+}
