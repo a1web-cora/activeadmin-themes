@@ -6,15 +6,19 @@ require "active_admin/themes/recipes/v3"
 
 RSpec.describe ActiveAdmin::Themes::Recipes::V3 do
   it "defines an explicit stable concern order" do
-    expect(described_class::PARTS).to eq(%w[
+    expected = %w[
       foundation/tokens foundation/base components/navigation components/tables
       components/filters components/forms components/panels components/feedback
       surfaces/login surfaces/dashboard hardening/responsive hardening/preferences
-    ])
+    ]
+
+    expect(described_class::PARTS).to eq(expected)
   end
 
   it "composes identical bytes on repeated calls" do
-    expect(described_class.source).to eq(described_class.source)
+    first = described_class.source
+
+    expect(described_class.source).to eq(first)
   end
 
   it "ignores empty concern slots without introducing separators" do

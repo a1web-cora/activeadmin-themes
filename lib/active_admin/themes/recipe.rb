@@ -46,10 +46,7 @@ module ActiveAdmin
       private
 
       def source
-        case theme.key
-        when :v3 then Recipes::V3.source
-        else raise ArgumentError, "no recipe source for #{theme.key.inspect}"
-        end
+        Recipes::V3.source
       end
 
       def plan

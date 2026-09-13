@@ -4,6 +4,7 @@
 require "spec_helper"
 require "active_admin/themes/recipes/v3"
 
+# rubocop:disable-next RSpec/DescribeClass
 RSpec.describe "Host recipe build input" do
   it "uses the same composed bytes as the installer" do
     expect(File.binread("tmp/active_admin_v3.css")).to eq(ActiveAdmin::Themes::Recipes::V3.source)

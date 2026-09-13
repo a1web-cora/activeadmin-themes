@@ -1,3 +1,4 @@
+/* lib/active_admin/themes/recipes/v3/components/navigation.css */
 /* Native AA4 drawer dimensions and JS hooks remain framework-owned. */
 body:has(:where(#main-menu)) {
   & > div:has(> [data-drawer-target="main-menu"]) {
