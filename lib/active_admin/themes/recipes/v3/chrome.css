@@ -1,0 +1,45 @@
+/* Native AA4 drawer dimensions and JS hooks remain framework-owned. */
+body:has(:where(#main-menu)) {
+  & > div:has(> [data-drawer-target="main-menu"]) {
+    background: var(--aat-chrome);
+    color: var(--aat-chrome-text);
+    border-color: var(--aat-chrome);
+    & a, & button, & button svg { color: var(--aat-chrome-text); }
+    & :focus-visible { outline-color: #f3cf79; }
+  }
+  & #main-menu {
+    background: var(--aat-surface);
+    border-color: var(--aat-border);
+    & a, & button { color: var(--aat-text); border-radius: var(--aat-radius); }
+    & .selected > a, & a.selected, & a[aria-current="page"] {
+      background: var(--aat-selected);
+      border-inline-start: 3px solid var(--aat-link);
+      font-weight: 700;
+    }
+    & a:hover, & button:hover { background: var(--aat-subtle); }
+  }
+  & #user-menu { background: var(--aat-surface); color: var(--aat-text); }
+  & #user-menu a { color: var(--aat-text); }
+  & [data-test-site-title] { font-size: 1rem; overflow-wrap: anywhere; }
+  & [data-test-page-header] {
+    background: var(--aat-subtle);
+    border-color: var(--aat-border);
+    padding: var(--aat-space-4) var(--aat-page-gutter);
+    margin-bottom: var(--aat-space-6);
+    gap: var(--aat-space-3);
+    & h2 { font-size: 1.5rem; line-height: 1.25; overflow-wrap: anywhere; }
+    & nav a { color: var(--aat-muted); }
+  }
+  & [data-test-page-content] { padding-inline: var(--aat-page-gutter); }
+  & .action-item-button {
+    background: var(--aat-surface);
+    color: var(--aat-text);
+    border-color: var(--aat-border);
+    border-radius: var(--aat-radius);
+    min-height: var(--aat-control-height);
+  }
+}
+
+@media (max-width: 48rem) {
+  body:has(:where(#main-menu)) { --aat-page-gutter: 0.75rem; }
+}
