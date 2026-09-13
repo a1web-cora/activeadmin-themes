@@ -16,6 +16,15 @@ standard: each process creates its own ignored database in `spec/host/tmp`.
 The 45 products contain only deterministic synthetic content. Database files
 remain available for debugging after exit; none are production data.
 
+This is a synthetic gem fixture, not an example Rails application architecture.
+`config/application.rb` defines the host; `config/environment.rb` only boots it.
+The RSpec helper and Rack launcher explicitly call `ThemeHost::Database.prepare!`
+before serving requests. That helper loads `db/schema.rb` and `db/seeds.rb` in a
+transaction on first preparation. Repeated preparation preserves existing tables
+and operator edits rather than recreating or duplicating records. Call preparation
+before starting request threads. Asset precompilation does not prepare a database.
+The publicly known secret key is fixture-only, just like the synthetic login.
+
 `bin/build-host` resolves the installed ActiveAdmin gem through Bundler,
 scans its templates and Ruby builders, and compiles the locked Tailwind plugin
 into an ignored output. `bin/test` exercises real dashboard, filter, validation
