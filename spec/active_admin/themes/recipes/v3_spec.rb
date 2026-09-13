@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "digest/sha1"
 require "active_admin/themes/recipes/v3"
 
 RSpec.describe ActiveAdmin::Themes::Recipes::V3 do
@@ -11,11 +12,16 @@ RSpec.describe ActiveAdmin::Themes::Recipes::V3 do
     ])
   end
 
-  it "composes only non-empty concerns in manifest order" do
+  it "preserves the exact canonical recipe bytes from pre-refactor master" do
+    source = described_class.source
+    git_blob = "blob #{source.bytesize}\0#{source}"
+
+    expect(Digest::SHA1.hexdigest(git_blob)).to eq("1b8079448ecd5867564ddea24cbcc19393e2c991")
+  end
+
+  it "composes populated concerns in manifest order" do
     source = described_class.source
 
-    expect(source).to start_with("/* lib/active_admin/themes/recipes/v3/tokens.css")
     expect(source.index("Native AA4 drawer")).to be < source.index("Index presentation only")
-    expect(source).not_to include("\n\n\n")
   end
 end
