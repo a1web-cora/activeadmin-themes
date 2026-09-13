@@ -194,7 +194,8 @@ body:has(:where(#main-menu)) .formtastic {
   & .input { padding-block: var(--aat-space-2); min-width: 0; }
   & .label { font-weight: 600; margin-bottom: var(--aat-space-1); }
   & .label abbr { color: var(--aat-danger); }
-  & :is(input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]), select, textarea) {
+  /* Keep control exclusions specificity-neutral so validation/disabled states win. */
+  & :where(input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]), select, textarea) {
     background-color: var(--aat-surface);
     color: var(--aat-text);
     border-color: var(--aat-border);
@@ -221,7 +222,6 @@ body:has(:where(#main-menu)) .formtastic {
   }
   & .error :is(input, select, textarea) { border-color: var(--aat-danger); }
   & :is(.inline-hints, .inline-errors, .errors, .label) { overflow-wrap: anywhere; }
-  & :disabled { background-color: var(--aat-subtle); color: var(--aat-muted); cursor: not-allowed; }
   & .has-many-fields { border-color: var(--aat-border); padding-inline-start: var(--aat-space-4); }
   & .actions > ol { gap: var(--aat-space-4); flex-wrap: wrap; }
   & input[type="submit"], & input[type="button"], & button, & .has-many-add {
@@ -229,6 +229,11 @@ body:has(:where(#main-menu)) .formtastic {
     color: var(--aat-surface);
     border-radius: var(--aat-radius);
     min-height: var(--aat-control-height);
+  }
+  & :is(input, select, textarea, button):disabled {
+    background-color: var(--aat-subtle);
+    color: var(--aat-muted);
+    cursor: not-allowed;
   }
   & .has-many-remove { color: var(--aat-danger); text-decoration: underline; }
   & .cancel-link { color: var(--aat-link); text-decoration: underline; }
