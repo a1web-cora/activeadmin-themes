@@ -18,9 +18,12 @@ against page/surface/selection backgrounds. These static/build checks do not
 replace the matrix. Checkbox/radio hit areas, semantic names and actual browser
 preference handling still require observation and a recorded disposition.
 
-Initial local checks: `bin/build-host` passes; `bin/ci` passes with 107 examples,
+Initial integrated local checks: `bin/build-host` passes; `bin/ci` passes with 107 examples,
 100% library line/branch coverage, 48 lint-clean files, RBS validation, dependency
 audit, and gem build. No matrix case is marked passed by those results.
+The focused master-based draft independently passes 84 examples and 42 lint-clean
+files with the same coverage, build, validation and audit gates. Its component
+selectors do not establish acceptance before those component PRs are integrated.
 
 ## Prepare The Exact Candidate
 
