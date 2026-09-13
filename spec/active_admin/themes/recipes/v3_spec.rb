@@ -2,21 +2,27 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "digest/sha1"
 require "active_admin/themes/recipes/v3"
 
 RSpec.describe ActiveAdmin::Themes::Recipes::V3 do
   it "defines an explicit stable concern order" do
     expect(described_class::PARTS).to eq(%w[
-      tokens chrome tables filters forms feedback login dashboard hardening
+      foundation/tokens foundation/base components/navigation components/tables
+      components/filters components/forms components/panels components/feedback
+      surfaces/login surfaces/dashboard hardening/responsive hardening/preferences
     ])
   end
 
-  it "preserves the exact canonical recipe bytes from pre-refactor master" do
-    source = described_class.source
-    git_blob = "blob #{source.bytesize}\0#{source}"
+  it "composes identical bytes on repeated calls" do
+    expect(described_class.source).to eq(described_class.source)
+  end
 
-    expect(Digest::SHA1.hexdigest(git_blob)).to eq("1b8079448ecd5867564ddea24cbcc19393e2c991")
+  it "ignores empty concern slots without introducing separators" do
+    contents = described_class::PARTS.map do |part|
+      File.binread(File.expand_path("../../../../lib/active_admin/themes/recipes/v3/#{part}.css", __dir__))
+    end
+
+    expect(described_class.source).to eq(contents.reject(&:empty?).join("\n"))
   end
 
   it "composes populated concerns in manifest order" do

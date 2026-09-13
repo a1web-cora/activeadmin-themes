@@ -6,15 +6,18 @@ module ActiveAdmin
     module Recipes
       module V3
         PARTS = %w[
-          tokens
-          chrome
-          tables
-          filters
-          forms
-          feedback
-          login
-          dashboard
-          hardening
+          foundation/tokens
+          foundation/base
+          components/navigation
+          components/tables
+          components/filters
+          components/forms
+          components/panels
+          components/feedback
+          surfaces/login
+          surfaces/dashboard
+          hardening/responsive
+          hardening/preferences
         ].freeze
 
         module_function

@@ -1,4 +1,4 @@
-/* lib/active_admin/themes/recipes/v3.css
+/* lib/active_admin/themes/recipes/v3/foundation/tokens.css
  * ActiveAdmin Themes: v3 recipe 1. Application-owned after explicit installation.
  * AA3.5-inspired hierarchy on AA4/Tailwind4; not historical CSS.
  * Native AA pages are recognized by #main-menu. Custom login layouts opt in
@@ -34,21 +34,6 @@ body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"] {
   --aat-success-bg: #edf7ef;
   --aat-warning: #754600;
   --aat-warning-bg: #fff5dc;
-  background: var(--aat-background);
-  color: var(--aat-text);
-  font-family: var(--aat-font);
-  font-size: var(--aat-text-size);
-  line-height: var(--aat-line-height);
-}
-
-:is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) :focus-visible {
-  outline: 2px solid var(--aat-focus);
-  outline-offset: 3px;
-}
-
-:is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) a {
-  color: var(--aat-link);
-  text-underline-offset: 0.2em;
 }
 
 /* Follow ActiveAdmin's native persisted theme state. */
@@ -69,5 +54,4 @@ html.dark :is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) {
   --aat-success-bg: #223e2b;
   --aat-warning: #f6d892;
   --aat-warning-bg: #44381f;
-  color-scheme: dark;
 }

@@ -39,7 +39,3 @@ body:has(:where(#main-menu)) {
     min-height: var(--aat-control-height);
   }
 }
-
-@media (max-width: 48rem) {
-  body:has(:where(#main-menu)) { --aat-page-gutter: 0.75rem; }
-}
