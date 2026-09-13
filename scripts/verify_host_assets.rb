@@ -17,6 +17,7 @@ document = Nokogiri::HTML(session.response.body)
 stylesheets = document.css('link[rel="stylesheet"]').map { |link| link["href"] }
 abort "Expected admin stylesheet" unless stylesheets.any? { |url| url.include?("active_admin-") }
 stylesheets.each do |url|
+  abort "Nonlocal stylesheet cannot be verified offline: #{url}" unless url.start_with?("/assets/")
   session.get url
   abort "Missing CSS #{url}" unless session.response.status == 200 && session.response.media_type == "text/css"
   abort "Theme not compiled into CSS" unless session.response.body.include?("--aat-surface")
@@ -27,7 +28,7 @@ abort "Expected one importmap" unless maps.length == 1
 imports = JSON.parse(maps.first.text).fetch("imports")
 abort "Canonical entrypoint missing" unless imports.key?("active_admin")
 imports.each_value do |url|
-  next unless url.start_with?("/assets/")
+  abort "Nonlocal import cannot be verified offline: #{url}" unless url.start_with?("/assets/")
 
   session.get url
   abort "Missing JavaScript #{url}" unless session.response.status == 200 &&
