@@ -16,7 +16,7 @@ ActiveAdmin.register_page "Feedback" do
       [true, false, nil, "Waiting On Operator", "REFERENCE-" * 20].each { |status| status_tag status }
     end
     panel "Utility Isolation" do
-      para "This host-owned green utility is not a flash.", class: "bg-green-50"
+      para "This host-owned green utility is not a flash.", class: "bg-green-50 text-green-950"
     end
   end
 end
