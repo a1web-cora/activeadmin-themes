@@ -1,0 +1,22 @@
+/* lib/active_admin/themes/recipes/v3/foundation/base.css */
+body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"] {
+  background: var(--aat-background);
+  color: var(--aat-text);
+  font-family: var(--aat-font);
+  font-size: var(--aat-text-size);
+  line-height: var(--aat-line-height);
+}
+
+:is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) :focus-visible {
+  outline: 2px solid var(--aat-focus);
+  outline-offset: 3px;
+}
+
+:is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) a {
+  color: var(--aat-link);
+  text-underline-offset: 0.2em;
+}
+
+html.dark :is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) {
+  color-scheme: dark;
+}
