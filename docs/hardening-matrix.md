@@ -9,6 +9,19 @@ traceable to an observed case; do not use this gate for unrelated surface work.
 [#11](https://github.com/scarver2/activeadmin-themes/issues/11) owns the final
 artifact/provenance inventory and clean-container release-style proof.
 
+The initial integration candidate is based on `64381bf90c9b549c71a38c153bf1e4b3dfca48f4`:
+#20 `c202e1d`, #22 `99a8a0b`, #21 `053a6bf`, #19 `b17fc5e`, and #23 `5da1a43`.
+It adds coarse-pointer action sizing, reduced-motion timing, and explicit
+forced-colors selection/focus boundaries without replacing native interactions.
+Expanded palette tests cover text/link on subtle/selected surfaces and focus
+against page/surface/selection backgrounds. These static/build checks do not
+replace the matrix. Checkbox/radio hit areas, semantic names and actual browser
+preference handling still require observation and a recorded disposition.
+
+Initial local checks: `bin/build-host` passes; `bin/ci` passes with 107 examples,
+100% library line/branch coverage, 48 lint-clean files, RBS validation, dependency
+audit, and gem build. No matrix case is marked passed by those results.
+
 ## Prepare The Exact Candidate
 
 1. Record the full integration SHA, each component PR/head, clean worktree

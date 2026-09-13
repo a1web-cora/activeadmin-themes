@@ -385,3 +385,44 @@ body:has(:where(#main-menu)) [data-theme-dashboard] {
   gap: var(--aat-space-6);
   & > * { min-width: 0; overflow-wrap: anywhere; }
 }
+
+/* Cross-surface input preferences; framework state and visibility stay native. */
+@media (pointer: coarse) {
+  :is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) {
+    --aat-control-height: 2.75rem;
+    & button, & input[type="submit"], & input[type="button"],
+    & .action-item-button, & .index-button, & .paginated-collection-pagination a,
+    & #main-menu a {
+      min-height: var(--aat-control-height);
+      min-width: 2.75rem;
+    }
+    & .filters-form-clear, & .cancel-link, & .has-many-add, & .has-many-remove {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--aat-control-height);
+      min-width: 2.75rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]),
+  :is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) * {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
+  }
+}
+
+/* Forced colors can remove box shadows and backgrounds used for selection. */
+@media (forced-colors: active) {
+  :is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) {
+    & :focus-visible { outline: 2px solid Highlight; }
+    & .index-button-selected, & .paginated-collection-pagination a.bg-blue-500 {
+      border-block-end: 3px solid CanvasText;
+      text-decoration: underline;
+    }
+    & .status-tag, & .panel { border-color: CanvasText; }
+  }
+}
