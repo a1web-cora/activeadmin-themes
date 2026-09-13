@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# bin/verify-container
+
+source "$(dirname "$0")/_lib.sh"
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  echo "Usage: bin/verify-container [git-ref]"
+  echo "Build a committed source archive without layer cache; verify assets offline in the resulting image."
+  exit 0
+fi
+[[ $# -le 1 ]] || { echo "Expected at most one git ref" >&2; exit 2; }
+DOCKER_BIN="${DOCKER_BIN:-docker}"
+SOURCE_SHA="$(git rev-parse --verify "${1:-HEAD}^{commit}")"
+IMAGE_TAG="activeadmin-themes-verify:${SOURCE_SHA}"
+echo "Verifying committed source $SOURCE_SHA (uncommitted and ignored files are excluded)"
+git archive "$SOURCE_SHA" | "$DOCKER_BIN" build --no-cache --progress=plain \
+  --label "org.opencontainers.image.revision=$SOURCE_SHA" \
+  --tag "$IMAGE_TAG" --file Dockerfile.host -
+"$DOCKER_BIN" image inspect "$IMAGE_TAG" --format 'Image {{.Id}} source {{index .Config.Labels "org.opencontainers.image.revision"}}'
+"$DOCKER_BIN" run --rm --network none "$IMAGE_TAG"
