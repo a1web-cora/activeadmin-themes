@@ -1,0 +1,22 @@
+{
+  "source_head": "00da1bb5ebf2457dba3b73a04c38e0eace3a03e3",
+  "source_git_blob": "c38ac3483d923264ace514e88c77a82f61cf2b2d",
+  "source_fixture": "pr23.source.css",
+  "cross_concern_order": "reviewed-native-disjoint",
+  "order_review": {
+    "contract_spec": "spec/login_dashboard_spec.rb",
+    "rationale": "Deputy reviewed the unchanged login/dashboard-before-tables to tables-before-surfaces migration as order-independent for supported native/opt-in host surfaces: data-theme-login and data-theme-dashboard are separate from data-table/paginated-collection index hooks. Route regressions cover that boundary. This is not a guarantee for arbitrary custom nested host compositions or browser visual acceptance."
+  },
+  "concerns": [
+    {
+      "part": "surfaces/login",
+      "fixture": "pr23.login.css",
+      "sha256": "87a97f0579f8b7eeceaf48326aca1b1c44743c738f8464766f8b2840ecac56e6"
+    },
+    {
+      "part": "surfaces/dashboard",
+      "fixture": "pr23.dashboard.css",
+      "sha256": "f001413f31ac05c75f0ece02c48b9c1f0ef409ecdea7bbf43be026cee31a39ab"
+    }
+  ]
+}
