@@ -25,12 +25,13 @@ family("dimensions", "width height min-width min-height max-width max-height inl
 family("overflow", "overflow overflow-x overflow-y overflow-block overflow-inline");
 family("flex", "flex flex-grow flex-shrink flex-basis flex-flow flex-direction flex-wrap");
 family("gap", "gap row-gap column-gap");
+family("grid", "grid grid-template grid-template-columns grid-template-rows grid-template-areas grid-auto-columns grid-auto-rows grid-auto-flow grid-row grid-row-start grid-row-end grid-column grid-column-start grid-column-end grid-area");
 family("alignment", "place-items align-items justify-items place-content align-content justify-content place-self align-self justify-self");
 family("outline", "outline outline-color outline-width outline-style outline-offset");
 family("decoration", "text-decoration text-decoration-color text-decoration-line text-decoration-style text-decoration-thickness text-underline-offset");
 family("animation", "animation animation-name animation-duration animation-delay animation-timing-function animation-iteration-count animation-direction animation-fill-mode animation-play-state animation-timeline animation-range animation-range-start animation-range-end");
 family("transition", "transition transition-property transition-duration transition-delay transition-timing-function transition-behavior");
-for (const property of "all accent-color appearance box-shadow box-sizing color color-scheme content cursor direction display isolation opacity overflow-wrap position scroll-behavior text-align text-transform unicode-bidi vertical-align visibility white-space word-break z-index".split(" ")) {
+for (const property of "all accent-color appearance box-shadow box-sizing color color-scheme content cursor direction display isolation opacity overflow-wrap position resize scroll-behavior text-align text-transform unicode-bidi vertical-align visibility white-space word-break z-index".split(" ")) {
   family(property, property);
 }
 
@@ -112,6 +113,26 @@ export function compareSources(before, after) {
 
 export function compare(oldPath, newPath) {
   compareSources(readFileSync(oldPath, "utf8"), readFileSync(newPath, "utf8"));
+}
+
+// Provenance membership only: exact contexts/declarations and multiplicity, NOT
+// ordering. Keep separate from compareSources; callers must disclose/order-review
+// any old cross-concern movement rather than treating this as cascade equivalence.
+export function assertAdditionProvenance(core, original, additions) {
+  function inventory(source) {
+    const { records, empty } = inspect(source);
+    const counts = new Map();
+    for (const item of [...records.map((record) => ["decl", record]), ...empty.map((path) => ["empty", path])]) {
+      const key = JSON.stringify(item);
+      counts.set(key, (counts.get(key) || 0) + 1);
+    }
+    return counts;
+  }
+  const expected = inventory(`${core}\n${additions}`);
+  const observed = inventory(original);
+  if (expected.size !== observed.size || [...expected].some(([key, count]) => observed.get(key) !== count)) {
+    throw new Error("Migration snippets are not exactly the original source additions to the pinned core");
+  }
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
