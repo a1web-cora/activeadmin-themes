@@ -96,6 +96,43 @@ breakpoint-specific failure at 768 and 1024. Use actual keyboard/pointer input.
 
 ## Acceptance Record
 
+### Machine-Checked Completeness
+
+`mise exec -- node scripts/validate_hardening_evidence.mjs MANIFEST.json FULL_SOURCE_SHA`
+checks the hardening portion of the #11 evidence manifest. It does not run a
+browser, judge pixels, verify artifact bytes, or grant acceptance. Run the #11
+artifact/provenance check separately. Neither command closes an issue.
+Reviewer attribution is a required record, not machine proof that review occurred.
+
+Each case uses the common `id`, `route`, `palette`, `viewport` (`width`, `height`),
+`zoom_percent`, `status`, `screenshot` (`path`, `sha256`) and `observation` fields.
+Add `reviewed_by` identifying the actual reviewer, plus these classifications:
+
+| `kind` | Additional fields / required coverage |
+| --- | --- |
+| `matrix` | `surface`: index/show/new/edit/dashboard/login/validation/empty/long; all four widths, both palettes, 100% zoom (72 observations) |
+| `zoom` | `surface`: index/new/dashboard; both palettes; `zoom_percent: 200`; `zoom: {method: "browser-native", reported_factor: 2, baseline_css_width: 1440}` (example baseline); measured viewport approximately half the recorded baseline, allowing two CSS pixels rounding (six observations) |
+| `interaction` | `interaction`: navigation/index/filters/forms; both palettes at 390/1440 and 100% zoom (16 observations) |
+| `preference` | `preference`: coarse-pointer/reduced-motion/forced-colors; both palettes; `preference_source`: browser-emulation/native-os/physical-device; observed `preference_active: true` (six observations) |
+
+There must be exactly one matching observation per required slot. Extra states
+may be recorded with other kinds. Every required observation needs explicit
+`pass`, written review and screenshot reference/hash. Findings and `not-tested`
+states stay non-passing; an exception needs Sheriff/Deputy disposition, not a
+fabricated pass to satisfy tooling. The 100 slots are protocol completeness,
+not a claim that one image proves every sub-action: interaction observations must
+describe each action and any findings from the protocol above. Preference
+emulation must never be described as physical-device evidence.
+Record the unzoomed CSS viewport separately from the 1440px browser window;
+browser chrome and scrollbars can make those widths differ.
+
+The original PR #24 evidence at `73438900597633ee038ab5f82ad5c515f22b8eb6`
+is historical reference, not an automatically accepted ledger for a changed
+head. Its [final review packet](https://github.com/scarver2/activeadmin-themes/pull/24#issuecomment-5663990581)
+records completed Chromium image/zoom review, narrow-table and action-label
+readability observations, and the native Batch Actions Escape-dismissal finding.
+Retain that finding explicitly until its owner and disposition are reviewed.
+
 For each case record `pending`, `pass`, `fail`, or `not tested`, with full SHA,
 route, palette, viewport, zoom, browser, screenshot path, and concise observation.
 Keep screenshot files and machine-readable provenance together under the #11
