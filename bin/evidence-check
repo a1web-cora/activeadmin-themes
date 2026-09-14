@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# bin/evidence-check
+
+source "$(dirname "$0")/_lib.sh"
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  echo "Usage: bin/evidence-check MANIFEST.json FULL_SOURCE_SHA"
+  exit 0
+fi
+run_bundle ruby scripts/check_evidence.rb "$@"

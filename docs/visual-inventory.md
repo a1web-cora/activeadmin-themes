@@ -2,6 +2,11 @@
 
 # V3 Reference And Evidence Inventory
 
+This older inventory is historical. The approved canonical reference is
+[AA3.5.2 source-to-concern map](visual-reference-map.md), not the AA3.5.0 snapshot
+below. Fresh artifacts use the [durable evidence manifest](evidence-inventory.md).
+Historical gate statuses below are not current-head verification results.
+
 Historical source: [AA3.5.0 variables](https://github.com/activeadmin/activeadmin/blob/v3.5.0/app/assets/stylesheets/active_admin/mixins/_variables.scss),
 inspected September 12, 2026. This is tagged-source evidence, not a historical
 screenshot. No mutable online demo is labeled AA3.5 here.
