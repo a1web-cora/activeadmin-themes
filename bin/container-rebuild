@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# bin/container-rebuild
+source "$(dirname "$0")/_container.sh"
+if [[ "${1:-}" == --help || "${1:-}" == -h ]]; then
+  echo "Usage: bin/container-rebuild [git-ref] — remove selected workflow state, build without cache"; exit 0
+fi
+container_prepare "$@"
+container_compose down --remove-orphans
+container_compose --progress plain build --no-cache verification
+container_identity

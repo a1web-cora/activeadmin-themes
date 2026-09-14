@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# bin/container-verify
+source "$(dirname "$0")/_container.sh"
+if [[ "${1:-}" == --help || "${1:-}" == -h ]]; then
+  echo "Usage: bin/container-verify [git-ref] — verify an existing exact-source image offline"; exit 0
+fi
+container_prepare "$@"
+container_identity
+# Compose network_mode: none is the declarative equivalent of docker run --network none.
+container_compose run --rm --no-deps --pull never verification

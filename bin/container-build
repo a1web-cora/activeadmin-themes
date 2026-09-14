@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# bin/container-build
+source "$(dirname "$0")/_container.sh"
+if [[ "${1:-}" == --help || "${1:-}" == -h ]]; then
+  echo "Usage: bin/container-build [git-ref] — committed source, no cache"; exit 0
+fi
+container_prepare "$@"
+container_compose --progress plain build --no-cache verification
+container_identity
