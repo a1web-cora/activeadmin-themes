@@ -10,6 +10,20 @@ RSpec.describe "V3 host forms", type: :feature do
     click_button "Sign In"
   end
 
+  it "keeps the native index table outside Formtastic forms" do
+    visit "/admin/products"
+    expect(page).to have_css(".data-table")
+    expect(page).not_to have_css(".formtastic .data-table")
+  end
+
+  %w[new 1/edit].each do |path|
+    it "keeps the native #{path} form outside data-table styling" do
+      visit "/admin/products/#{path}"
+      expect(page).to have_css(".formtastic")
+      expect(page).not_to have_css(".data-table")
+    end
+  end
+
   it "retains required markers, hints, disabled fields, and cancel navigation" do
     visit "/admin/products/new"
     expect(page).to have_css("#product_name_input.required label abbr", text: "*")

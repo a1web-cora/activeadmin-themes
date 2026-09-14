@@ -23,6 +23,22 @@ provenance remain part of [#8](https://github.com/scarver2/activeadmin-themes/is
 and [#11](https://github.com/scarver2/activeadmin-themes/issues/11).
 CSS does not create missing accessible error associations or native semantics.
 
+## Concern Migration
+
+The existing Formtastic declarations from PR #21 head
+`c403cd9e8299256e98ff21d1e68eaa057eb023f6` now live in
+`lib/active_admin/themes/recipes/v3/components/forms.css`; no declarations,
+selectors, specificity, or behavior were refined during this move.
+
+The fixed manifest places tables before forms, while that original head placed
+forms before tables. Deputy reviewed this exception against the native AA4 host
+contract: index tables are outside `.formtastic`, and new/edit forms contain no
+`.data-table`. Request specs preserve those boundaries. This is not a claim that
+arbitrary custom DOM nesting commutes, nor a reason to relax the generic
+cascade-order comparator. The original full source and extracted form bytes are
+pinned under `spec/fixtures/css_migrations/pr21.*`; metadata records the limited
+review rationale separately from generic cross-concern equivalence.
+
 Related: [#7](https://github.com/scarver2/activeadmin-themes/issues/7),
 [synthetic host](test-host.md), [Rodeo adoption](https://github.com/a1web/rodeo/issues/235).
 

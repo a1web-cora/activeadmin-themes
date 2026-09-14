@@ -3,6 +3,10 @@
   "source_git_blob": "02bc938f81f947d228e2e4118d7c396f70b5c598",
   "source_fixture": "pr21.source.css",
   "cross_concern_order": "requires-separate-review",
+  "cross_concern_order_review": {
+    "disposition": "reviewed-native-surfaces",
+    "rationale": "Deputy accepted the table-before-form concern order for the native AA4 host: index tables are not nested in .formtastic and new/edit forms contain no .data-table. Host specs pin that contract. Arbitrary custom DOM nesting is outside this claim; generic comparator order sensitivity remains unchanged."
+  },
   "concerns": [
     {
       "part": "components/forms",
