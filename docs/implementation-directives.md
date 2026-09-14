@@ -2,11 +2,13 @@
 
 # V3 implementation directives
 
-[Issue #13](https://github.com/scarver2/activeadmin-themes/issues/13) is the source register and detailed acceptance contract. The runtime target is ActiveAdmin 4 with Tailwind CSS 4. Tagged ActiveAdmin 3.5 supplies the visual reference. Record versions, URLs, viewports and states with every comparison; no historical screenshot or visual parity is implied by the registry foundation.
+[Issue #13](https://github.com/scarver2/activeadmin-themes/issues/13) is the source register and detailed acceptance contract. The runtime target is ActiveAdmin 4 with Tailwind CSS 4. The approved visual reference is specifically [ActiveAdmin 3.5.2](https://github.com/activeadmin/activeadmin/tree/v3.5.2/app/assets/stylesheets/active_admin), superseding the issue's original 3.5.0 reference. Record versions, URLs, viewports and states with every comparison; no historical screenshot or visual parity is implied by the registry foundation. The [acceptance ledger](acceptance-ledger.md) separates source implementation from exact-head execution and final acceptance.
 
 ## Delivery sequence
 
 Implement the explicit installer (#2) and synthetic test host (#11) before broad visual work. Establish measured tokens (#1), then chrome (#5), tables/scopes/pagination (#4), filters (#3), forms (#7), panels/status/flash (#6), login/dashboard (#9), and responsive/dark refinements (#8). Prove integration in the [Showcase](https://github.com/scarver2/activeadmin-react-showcase) before separately reviewed Rodeo adoption.
+
+The concern migration is now present on master. Subsequent visual refinements remain focused and ordered: navigation, tables/scopes, filters, forms, panels/feedback, then login/dashboard. Record each modernization decision as **historical reference → AA4 constraint → V3 adaptation**. Shared token changes must identify affected downstream surfaces. Do not copy historical runtime behavior, selectors or SCSS wholesale; native AA4 behavior remains authoritative. Release/publication and Rodeo adoption require separate authorization.
 
 ## Installation and assets
 
