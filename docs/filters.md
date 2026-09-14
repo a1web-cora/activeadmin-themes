@@ -18,6 +18,14 @@ remain ActiveAdmin/Ransack responsibilities. This slice does not replace them.
 
 ## Verification And Remaining Gates
 
+The architecture-only migration places this slice, including its filter-specific
+media rule, in `lib/active_admin/themes/recipes/v3/components/filters.css` without
+changing the composer manifest. Migration fixtures pin the original PR head
+`1f85dc9629c660ababd1a62ca8e9c7f7e2885c48` and full CSS Git blob. The strict
+structural/cascade comparison checks the old complete source against the new
+core-plus-filter composition; the immutable pre-concern core fixture is unchanged.
+This is source-preservation evidence, not new visual acceptance.
+
 `bin/build-host` compiles the recipe with the locked AA4/Tailwind host.
 `bin/ci` runs request-level filter checks alongside the full library suite:
 combined string/select submission, applied values, numeric predicates, date
