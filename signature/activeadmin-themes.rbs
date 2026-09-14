@@ -6,6 +6,14 @@ module ActiveAdmin
 
     def self.registry: () -> Registry
 
+    module Recipes
+      module V3
+        PARTS: Array[String]
+
+        def self.source: () -> String
+      end
+    end
+
     class Recipe
       class Conflict < StandardError
       end
