@@ -4,6 +4,26 @@
 require "rails_helper"
 
 RSpec.describe "V3 opt-in login and dashboard", type: :feature do
+  it "keeps the opt-in login outside index table hooks" do
+    visit "/login"
+    expect(page).not_to have_css(".data-table, .paginated-collection")
+  end
+
+  it "keeps the fixture dashboard composition outside index table hooks" do
+    visit "/login"
+    fill_in "Demo Password", with: "demo"
+    click_button "Sign In"
+    expect(page).not_to have_css("[data-theme-dashboard] .data-table, [data-theme-dashboard] .paginated-collection")
+  end
+
+  it "keeps native index tables outside opt-in surface hooks" do
+    visit "/login"
+    fill_in "Demo Password", with: "demo"
+    click_button "Sign In"
+    visit "/admin/products"
+    expect(page).not_to have_css("[data-theme-login], [data-theme-dashboard]")
+  end
+
   it "exposes a labelled fixture login without pretending to be production authentication" do
     visit "/login"
     expect(page).to have_title("Login | ActiveAdmin Themes Lab")
