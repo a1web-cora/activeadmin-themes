@@ -17,14 +17,15 @@ RSpec.describe "CSS structural migration contract" do
   end
 
   it "rejects adversarial cascade and structure changes" do
-    output, status = Open3.capture2e("node", "--test", "spec/css_structure_test.mjs")
+    output, status = Open3.capture2e("node", "--test", "spec/css_structure_test.mjs", "spec/css_migrations_test.mjs")
 
     expect(status.success?).to be(true), output
   end
 
-  it "preserves the accepted fixture in the current composed source" do
+  it "preserves the pinned core and declared migrations in the current composed source" do
     with_composed_source do |path|
-      output, status = Open3.capture2e("node", "scripts/css_structure.mjs", "spec/fixtures/v3_pre_concerns.css", path)
+      output, status = Open3.capture2e("node", "scripts/verify_css_migrations.mjs", path)
+      warn output.lines.grep(/ORDER REVIEW:/).join unless output.lines.grep(/ORDER REVIEW:/).empty?
       expect(status.success?).to be(true), output
     end
   end
