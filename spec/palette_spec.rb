@@ -2,14 +2,15 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+require "active_admin/themes/recipes/v3"
 
 # rubocop:disable-next RSpec/DescribeClass
 RSpec.describe "V3 semantic palette" do
-  stylesheet = File.read("lib/active_admin/themes/recipes/v3.css")
+  stylesheet = ActiveAdmin::Themes::Recipes::V3.source
   palettes = stylesheet.scan(/--aat-background:.*?\n\}/m).first(2)
 
   it "declares both light and dark palettes" do
-    expect(File.read("lib/active_admin/themes/recipes/v3.css").scan("--aat-background:").length).to eq(2)
+    expect(ActiveAdmin::Themes::Recipes::V3.source.scan("--aat-background:").length).to eq(2)
   end
 
   palettes.each_with_index do |declarations, index|
