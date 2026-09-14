@@ -1,0 +1,18 @@
+{
+  "source_head": "485ce3bbe412634ec4568f8c045892fccbf07b15",
+  "source_git_blob": "0f344d8befa9321ba72fca64d1aa24872e73c3ca",
+  "source_fixture": "pr19.source.css",
+  "cross_concern_order": "preserved",
+  "concerns": [
+    {
+      "part": "components/panels",
+      "fixture": "pr19.panels.css",
+      "sha256": "c0ac3bb2aa4db4735905fa0fc3ac3a34d1ba702620bf7d9726f12477e4d47cb8"
+    },
+    {
+      "part": "components/feedback",
+      "fixture": "pr19.feedback.css",
+      "sha256": "987e17edb71f8e6fd09efc1ca6de8a4f503188fd9194fce42637f85860f525c3"
+    }
+  ]
+}

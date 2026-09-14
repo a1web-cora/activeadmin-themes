@@ -1,0 +1,18 @@
+{
+  "source_head": "06829752e6d0260d35333766d66b275877037611",
+  "source_git_blob": "6d2e0f6d4bdb99a28d0abb7a79f8baaee62230a6",
+  "source_fixture": "pr24.source.css",
+  "cross_concern_order": "preserved",
+  "concerns": [
+    {
+      "part": "hardening/responsive",
+      "fixture": "pr24.responsive.css",
+      "sha256": "8ff8126300727c2c3cdb331637843cba29d74fd3ab80fd0d22409f6f9b5fd55e"
+    },
+    {
+      "part": "hardening/preferences",
+      "fixture": "pr24.preferences.css",
+      "sha256": "ac311220544b2ff0fcc91fcd2fa98694225453c2ca3ffe9a40af94c1da157250"
+    }
+  ]
+}

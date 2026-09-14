@@ -42,6 +42,19 @@ RSpec.describe "V3 semantic palette" do
         end
       end
 
+      [%w[text background], %w[text subtle], %w[text selected], %w[muted subtle],
+       %w[link subtle], %w[link selected]].each do |foreground, background|
+        it "gives #{foreground} at least 4.5:1 against #{background}" do
+          expect(contrast(foreground, background)).to be >= 4.5
+        end
+      end
+
+      %w[surface background selected].each do |background|
+        it "gives focus at least 3:1 against #{background}" do
+          expect(contrast("focus", background)).to be >= 3
+        end
+      end
+
       it "gives control boundaries at least 3:1" do
         expect(contrast("border", "surface")).to be >= 3
       end
