@@ -19,3 +19,10 @@
     & .status-tag, & .panel { border-color: CanvasText; }
   }
 }
+
+/* PR24 intentional correction: SVGs must not preserve white chrome ink on Canvas. */
+@media (forced-colors: active) {
+  body:has(:where(#main-menu)) > div:has(> [data-drawer-target="main-menu"]) button svg {
+    color: ButtonText;
+  }
+}
