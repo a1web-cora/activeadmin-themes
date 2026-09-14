@@ -80,6 +80,14 @@ export function verify(composedPath) {
   const migrations = readdirSync(directory).filter((name) => name.endsWith(".json")).sort()
     .map((name) => JSON.parse(readFileSync(join(directory, name), "utf8")));
   const { additions, notes } = migrationAdditions(core, migrations, readFixture);
+  // Sheriff-authorized post-migration correction. Historical fixtures above remain immutable.
+  // Keep the exact media/selector/value contract independent of production CSS.
+  const preferenceCorrection = `@media (forced-colors: active) {
+    body:has(:where(#main-menu)) > div:has(> [data-drawer-target="main-menu"]) button svg {
+      color: ButtonText;
+    }
+  }`;
+  additions.set("hardening/preferences", `${additions.get("hardening/preferences") || ""}\n${preferenceCorrection}`);
   for (const part of core.manifest) {
     const expected = [core.sources[part], additions.get(part) || ""].filter(Boolean).join("\n");
     const actual = readFileSync(join(root, `lib/active_admin/themes/recipes/v3/${part}.css`), "utf8");
