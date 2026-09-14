@@ -3,6 +3,7 @@
 
 require "active_admin/themes"
 require "active_admin/themes/installation_plan"
+require "active_admin/themes/recipes/v3"
 
 module ActiveAdmin
   module Themes
@@ -45,7 +46,7 @@ module ActiveAdmin
       private
 
       def source
-        File.binread(File.expand_path("recipes/#{theme.key}.css", __dir__))
+        Recipes::V3.source
       end
 
       def plan

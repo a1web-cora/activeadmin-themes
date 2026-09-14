@@ -23,6 +23,23 @@ RSpec.describe ActiveAdmin::Themes::Recipe do
     expect(recipe.status).to eq(:identical)
   end
 
+  it "installs exactly the composed canonical CSS bytes" do
+    recipe.install
+    expect(File.binread(File.join(root, recipe.destination))).to eq(ActiveAdmin::Themes::Recipes::V3.source)
+  end
+
+  it "composes identical bytes on repeated calls" do
+    original = ActiveAdmin::Themes::Recipes::V3.source
+    expect(Array.new(3) { ActiveAdmin::Themes::Recipes::V3.source }).to all(eq(original))
+  end
+
+  it "leaves composed CSS bytes unchanged on repeated installation" do
+    recipe.install
+    original = File.binread(File.join(root, recipe.destination))
+    recipe.install
+    expect(File.binread(File.join(root, recipe.destination))).to eq(original)
+  end
+
   it "preserves customization and the host entrypoint" do
     recipe.install
     File.write(File.join(root, recipe.destination), "custom")

@@ -4,11 +4,14 @@
 ENV["RAILS_ENV"] = "production"
 require "json"
 require "nokogiri"
+require_relative "../lib/active_admin/themes/recipes/v3"
 require_relative "../spec/host/config/environment"
 require_relative "support/asset_urls"
 
 abort "Production boot created a database" if Rails.root.join("tmp/host-#{Process.pid}.sqlite3").exist?
 abort "Precompiled manifest missing" unless Rails.root.join("public/assets/.manifest.json").file?
+recipe_input = Rails.root.join("../../tmp/active_admin_v3.css")
+abort "Host recipe differs from composer" unless recipe_input.binread == ActiveAdmin::Themes::Recipes::V3.source
 
 session = ActionDispatch::Integration::Session.new(Rails.application)
 session.host! "localhost"
