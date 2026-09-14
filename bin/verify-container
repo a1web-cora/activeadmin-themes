@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# bin/verify-container
+
+source "$(dirname "$0")/_lib.sh"
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  echo "Usage: bin/verify-container [git-ref]"
+  echo "Build a committed source archive without layer cache; verify assets offline in the resulting image."
+  exit 0
+fi
+[[ $# -le 1 ]] || { echo "Expected at most one git ref" >&2; exit 2; }
+SOURCE_SHA="$(git rev-parse --verify "${1:-HEAD}^{commit}")"
+"$BIN_DIR/container-build" "$SOURCE_SHA"
+"$BIN_DIR/container-verify" "$SOURCE_SHA"

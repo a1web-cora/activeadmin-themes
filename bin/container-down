@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# bin/container-down
+source "$(dirname "$0")/_container.sh"
+if [[ "${1:-}" == --help || "${1:-}" == -h ]]; then
+  echo "Usage: bin/container-down [git-ref] — remove only selected workflow containers; retain evidence image"; exit 0
+fi
+container_prepare "$@"
+container_compose down --remove-orphans

@@ -1,0 +1,11 @@
+# compose.yaml
+# Synthetic, disposable verification only. Invoke through bin/container-*.
+services:
+  verification:
+    image: "${VERIFY_IMAGE:?Use bin/container-build}"
+    build:
+      context: "${VERIFY_CONTEXT:?A committed-source context is required}"
+      dockerfile: Dockerfile
+      labels:
+        org.opencontainers.image.revision: "${VERIFY_SHA:?A full source SHA is required}"
+    network_mode: none
