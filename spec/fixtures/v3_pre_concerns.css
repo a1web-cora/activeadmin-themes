@@ -118,64 +118,6 @@ body:has(:where(#main-menu)) {
   body:has(:where(#main-menu)) { --aat-page-gutter: 0.75rem; }
 }
 
-/* Formtastic retains validation, native controls, and has-many behavior. */
-body:has(:where(#main-menu)) .formtastic {
-  color: var(--aat-text);
-  & .inputs, & .has-many-fields { margin-bottom: var(--aat-space-4); min-width: 0; }
-  & .fieldset-title, & .has-many-fields-title {
-    font-size: 1rem;
-    border-color: var(--aat-border);
-    padding-bottom: var(--aat-space-2);
-  }
-  & .input { padding-block: var(--aat-space-2); min-width: 0; }
-  & .label { font-weight: 600; margin-bottom: var(--aat-space-1); }
-  & .label abbr { color: var(--aat-danger); }
-  /* Keep control exclusions specificity-neutral so validation/disabled states win. */
-  & :where(input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]), select, textarea) {
-    background-color: var(--aat-surface);
-    color: var(--aat-text);
-    border-color: var(--aat-border);
-    border-radius: var(--aat-radius);
-    min-height: var(--aat-control-height);
-    max-width: 100%;
-  }
-  & textarea { height: 10rem; min-height: 7rem; resize: vertical; }
-  & input[type="file"] { padding: var(--aat-space-2); }
-  & input[type="file"]::file-selector-button {
-    background: var(--aat-subtle);
-    color: var(--aat-text);
-    border: 1px solid var(--aat-border);
-    border-radius: var(--aat-radius);
-    padding: var(--aat-space-1) var(--aat-space-2);
-    margin-inline-end: var(--aat-space-2);
-  }
-  & .inline-hints { color: var(--aat-muted); margin-top: var(--aat-space-1); }
-  & .inline-errors { color: var(--aat-danger); margin-top: var(--aat-space-1); }
-  & .errors {
-    color: var(--aat-danger);
-    background: var(--aat-danger-bg);
-    border-inline-start: 3px solid var(--aat-danger);
-  }
-  & .error :is(input, select, textarea) { border-color: var(--aat-danger); }
-  & :is(.inline-hints, .inline-errors, .errors, .label) { overflow-wrap: anywhere; }
-  & .has-many-fields { border-color: var(--aat-border); padding-inline-start: var(--aat-space-4); }
-  & .actions > ol { gap: var(--aat-space-4); flex-wrap: wrap; }
-  & input[type="submit"], & input[type="button"], & button, & .has-many-add {
-    background: var(--aat-link);
-    color: var(--aat-surface);
-    border-radius: var(--aat-radius);
-    min-height: var(--aat-control-height);
-  }
-  & :is(input, select, textarea, button):disabled {
-    background-color: var(--aat-subtle);
-    color: var(--aat-muted);
-    cursor: not-allowed;
-  }
-  & .has-many-remove { color: var(--aat-danger); text-decoration: underline; }
-  & .cancel-link { color: var(--aat-link); text-decoration: underline; }
-  & .boolean label, & .choice label { min-height: var(--aat-control-height); }
-}
-
 /* Index presentation only; sorting, selection and pagination stay native. */
 body:has(:where(#main-menu)) {
   & .paginated-collection {
