@@ -118,50 +118,6 @@ body:has(:where(#main-menu)) {
   body:has(:where(#main-menu)) { --aat-page-gutter: 0.75rem; }
 }
 
-/* Optional host composition hooks; authentication and dashboard data are host-owned. */
-body[data-activeadmin-theme="v3"] [data-theme-login] {
-  width: 100%;
-  max-width: 28rem;
-  background: var(--aat-surface);
-  border: var(--aat-border-width) solid var(--aat-border);
-  border-radius: var(--aat-radius);
-  overflow-wrap: anywhere;
-  & .panel-title { font-size: 1.5rem; line-height: 1.25; padding: var(--aat-space-6); }
-  & .panel-body { padding: var(--aat-space-6); display: grid; gap: var(--aat-space-4); }
-  & form, & .input { display: grid; gap: var(--aat-space-2); }
-  & form { gap: var(--aat-space-4); }
-  & label { color: var(--aat-text); font-weight: 600; }
-  & input[type="password"], & input[type="email"], & input[type="text"] {
-    width: 100%;
-    min-width: 0;
-    min-height: var(--aat-control-height);
-    border: var(--aat-border-width) solid var(--aat-border);
-    border-radius: var(--aat-radius);
-    background: var(--aat-surface);
-    color: var(--aat-text);
-    padding: var(--aat-space-2) var(--aat-space-3);
-  }
-  & input[type="submit"], & button[type="submit"] {
-    min-height: var(--aat-control-height);
-    background: var(--aat-link);
-    color: var(--aat-surface);
-    border: var(--aat-border-width) solid var(--aat-link);
-    border-radius: var(--aat-radius);
-    font-weight: 700;
-    padding: var(--aat-space-2) var(--aat-space-4);
-    cursor: pointer;
-  }
-  & input:disabled, & button:disabled { opacity: 0.6; cursor: not-allowed; }
-}
-
-body:has(:where(#main-menu)) [data-theme-dashboard] {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-  align-items: start;
-  gap: var(--aat-space-6);
-  & > * { min-width: 0; overflow-wrap: anywhere; }
-}
-
 /* Index presentation only; sorting, selection and pagination stay native. */
 body:has(:where(#main-menu)) {
   & .paginated-collection {
