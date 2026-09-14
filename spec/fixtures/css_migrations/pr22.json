@@ -1,0 +1,13 @@
+{
+  "source_head": "1f85dc9629c660ababd1a62ca8e9c7f7e2885c48",
+  "source_git_blob": "2bd39ab215d026dabcf49ea4e80510cdaa93f621",
+  "source_fixture": "pr22.source.css",
+  "cross_concern_order": "preserved",
+  "concerns": [
+    {
+      "part": "components/filters",
+      "fixture": "pr22.filters.css",
+      "sha256": "96d452869167e81b378e27f32abbfa815432ac7457b9b0c1aa5d70ff0a6e6780"
+    }
+  ]
+}

@@ -28,6 +28,7 @@ ActiveAdmin.register Product do
     form.semantic_errors
     form.inputs "Product Details" do
       form.input :name, hint: "A clear operator-facing label."
+      form.input :id, label: "Fixture ID", input_html: { disabled: true }, hint: "Assigned by the synthetic host."
       form.input :status, as: :select, collection: %w[pending ready], include_blank: false
       form.input :quantity
       form.input :description

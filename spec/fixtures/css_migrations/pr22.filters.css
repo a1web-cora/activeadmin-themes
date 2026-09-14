@@ -1,4 +1,3 @@
-/* lib/active_admin/themes/recipes/v3/components/filters.css */
 /* Filters retain native submission, operator selects and applied-state text. */
 body:has(:where(#main-menu)) {
   & .filters-form {
