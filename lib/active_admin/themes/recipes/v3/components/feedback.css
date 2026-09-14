@@ -1,0 +1,29 @@
+/* lib/active_admin/themes/recipes/v3/components/feedback.css */
+:is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) {
+  & .status-tag {
+    border: var(--aat-border-width) solid var(--aat-border);
+    border-radius: var(--aat-radius);
+    background: var(--aat-subtle);
+    color: var(--aat-text);
+    font-size: 0.75rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  & .status-tag[data-status="yes"] { background: var(--aat-success-bg); color: var(--aat-success); }
+  & a[data-method="delete"] { color: var(--aat-danger); text-decoration: underline; }
+}
+
+/* beta22 has no flash hooks: match its native partial immediately after the page header.
+ * Do not recolor arbitrary host utility classes or infer severity from role="alert".
+ */
+body:has(:where(#main-menu)) [data-test-page-header] + div {
+  & > :is(.bg-green-50, .bg-red-50, .bg-yellow-50) {
+    border: var(--aat-border-width) solid currentColor;
+    border-radius: var(--aat-radius);
+    overflow-wrap: anywhere;
+    & svg { color: inherit; }
+  }
+  & > .bg-green-50 { background: var(--aat-success-bg); color: var(--aat-success); }
+  & > .bg-red-50 { background: var(--aat-danger-bg); color: var(--aat-danger); }
+  & > .bg-yellow-50 { background: var(--aat-warning-bg); color: var(--aat-warning); }
+}

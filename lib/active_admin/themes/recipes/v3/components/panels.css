@@ -1,0 +1,27 @@
+/* lib/active_admin/themes/recipes/v3/components/panels.css */
+/* Panels and feedback retain visible words; arbitrary domain statuses stay neutral. */
+:is(body:has(:where(#main-menu)), body[data-activeadmin-theme="v3"]) {
+  & .panel, & .attributes-table {
+    background: var(--aat-surface);
+    border: var(--aat-border-width) solid var(--aat-border);
+    border-radius: var(--aat-radius);
+    box-shadow: none;
+  }
+  & .panel-title {
+    background: var(--aat-subtle);
+    color: var(--aat-text);
+    padding: var(--aat-space-3) var(--aat-space-4);
+    border-bottom: var(--aat-border-width) solid var(--aat-border);
+    font-size: 1rem;
+  }
+  & .panel-body { padding: var(--aat-space-4); overflow-wrap: anywhere; }
+  & .attributes-table {
+    overflow-x: auto;
+    & th, & td {
+      padding: var(--aat-space-2) var(--aat-space-3);
+      color: var(--aat-text);
+      overflow-wrap: anywhere;
+    }
+    & th { background: var(--aat-subtle); text-transform: none; }
+  }
+}
